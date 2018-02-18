@@ -10,10 +10,14 @@ import org.slf4j.LoggerFactory;
 public class PokerHand {
     private static final Logger LOGGER = LoggerFactory.getLogger(PokerHand.class);
 
-    Set<PokerCard> hand;
+    private final Set<PokerCard> hand;
 
     private PokerHand(Set<PokerCard> hand) {
         this.hand = hand;
+    }
+
+    public Set<PokerCard> getHand() {
+        return Collections.unmodifiableSet(hand);
     }
 
     public static PokerHand fromStringRepresentation(String stringRepresentation) {

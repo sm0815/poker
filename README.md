@@ -39,3 +39,30 @@ A poker hand consists of 5 cards dealt from the deck. Poker hands are ranked by 
 * Please include instructions on how to run the application in the repository.
 * Deliverable is: a link to above mentioned repository where we can download the result.
 * Apply a level of test coverage which you think is appropriate.
+
+
+
+## Implementation
+
+
+
+### Thoughts on...
+#### Architecture
+* Option: Instead of amain interface just implement comparator on PokerHand
+    * Pro: 
+        * directly use object comparison to identify the better hand, less code
+    * Con: 
+        * "hides" this major system component as a comparator
+        * no object return value, outside code needs to connect result with winning hand
+        * possibly harder to test(?) 
+
+#### Parsing
+        
+* Option: Dedicated Parser instead of handling inside Representation classes
+    * Pro:
+        - separate from internal representation
+        - support for multiple representations
+    * Con:
+        * Within this project no need for multiple representation support (and unlikely in this scenario in general)
+        * Complicates the code
+        * Premature (architecture) optimisation, don't implement what you don't need 

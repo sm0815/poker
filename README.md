@@ -44,6 +44,9 @@ A poker hand consists of 5 cards dealt from the deck. Poker hands are ranked by 
 
 ## Implementation
 
+## Assumptions
+* With regard to determining whether a hand consists of consecutive values the values are considered to not be iterated in a round-robin fashion. E.g. King, Ace, 2, 3, 4 would not be considered a straight.
+    * If this would supposed to be handled differently, the ValuesInARowHandMatcher would need to be adapted to consider Straight hands not starting at the lowest value in the hand.
 
 
 ### Thoughts on...
@@ -65,4 +68,13 @@ A poker hand consists of 5 cards dealt from the deck. Poker hands are ranked by 
     * Con:
         * Within this project no need for multiple representation support (and unlikely in this scenario in general)
         * Complicates the code
-        * Premature (architecture) optimisation, don't implement what you don't need 
+        * Premature (architecture) optimisation, don't implement what you don't need
+
+
+## Running it
+
+* Clone this repository
+* Run 'mvn package' in your checkout
+* Enter the target directory: 'cd target'
+* Run the jar: 'java -jar poker-1.0-SNAPSHOT-jar-with-dependencies.jar'
+* Make sure you enter the string correctly, the parsing adheres strictly to the specified format

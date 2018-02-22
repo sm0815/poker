@@ -14,6 +14,7 @@ public class PokerHand {
     private static final Logger LOGGER = LoggerFactory.getLogger(PokerHand.class);
 
     private final Set<PokerCard> hand;
+    private String player;
 
     PokerHand(Set<PokerCard> hand) {
         this.hand = hand;
@@ -21,6 +22,14 @@ public class PokerHand {
 
     public Set<PokerCard> getHand() {
         return Collections.unmodifiableSet(hand);
+    }
+
+    public String getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(String player) {
+        this.player = player;
     }
 
     public static PokerHand fromStringRepresentation(String stringRepresentation) {
@@ -41,11 +50,13 @@ public class PokerHand {
         }
     }
 
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((hand == null) ? 0 : hand.hashCode());
+        result = prime * result + ((player == null) ? 0 : player.hashCode());
         return result;
     }
 
@@ -63,12 +74,16 @@ public class PokerHand {
                 return false;
         } else if (!hand.equals(other.hand))
             return false;
+        if (player == null) {
+            if (other.player != null)
+                return false;
+        } else if (!player.equals(other.player))
+            return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "PokerHand [hand=" + hand + "]";
+        return "PokerHand [hand=" + hand + ", player=" + player + "]";
     }
-
 }

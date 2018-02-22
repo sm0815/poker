@@ -25,23 +25,31 @@ public class SimplePokerHandEvaluator implements PokerHandEvaluator {
             new SameValueHandTypeMatcher(), new ValuesInARowHandTypeMatcher());
 
     @Override
-    public int compareHands(PokerHand oneHand, PokerHand anotherHand) {
-        PokerHandType firstHandMatch = getBestMatch(applyMatchers(oneHand));
-        PokerHandType secondHandMatch = getBestMatch(applyMatchers(anotherHand));
+    public PokerHandType compareHands(PokerHand oneHand, PokerHand anotherHand) {
+        PokerHandType firstHandMatch = getBestPokerHandType(applyMatchers(oneHand));
+        PokerHandType secondHandMatch = getBestPokerHandType(applyMatchers(anotherHand));
 
-        return firstHandMatch.compareTo(secondHandMatch);
+        int comparison = firstHandMatch.compareTo(secondHandMatch);
+        if (comparison > 0) {
+            return firstHandMatch;
+        }
+        if (comparison < 0) {
+            return secondHandMatch;
+        }
+        return null;
     }
 
     Stream<PokerHandType> applyMatchers(PokerHand pokerHand) {
         return matchers.parallelStream().map(matcher -> matcher.match(pokerHand)).filter(Objects::nonNull);
     }
 
-    PokerHandType getBestMatch(Stream<PokerHandType> matches) {
-        Optional<PokerHandType> bestMatch = matches.max((matchA, matchB) -> matchA.compareTo(matchB));
-        if (bestMatch.isPresent()) {
-            return bestMatch.get();
+
+    PokerHandType getBestPokerHandType(Stream<PokerHandType> types) {
+        Optional<PokerHandType> bestHandType = types.max((typeA, typeB) -> typeA.compareTo(typeB));
+        if (bestHandType.isPresent()) {
+            return bestHandType.get();
         }
-        LOGGER.error("No match found in {}", matches.toArray());
+        LOGGER.error("No match found in {}", types.toArray());
         return null;
     }
 

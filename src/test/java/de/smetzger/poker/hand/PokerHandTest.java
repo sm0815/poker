@@ -4,15 +4,11 @@ import java.util.Set;
 
 import junit.framework.Assert;
 import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
 
 import org.junit.Test;
 
 import com.google.common.collect.Sets;
-
-import de.smetzger.poker.hand.PokerCard;
-import de.smetzger.poker.hand.PokerCardSuit;
-import de.smetzger.poker.hand.PokerCardValue;
-import de.smetzger.poker.hand.PokerHand;
 
 public class PokerHandTest {
 
@@ -89,6 +85,6 @@ public class PokerHandTest {
 
     @Test
     public void testEqualsHashCodeContract() {
-        EqualsVerifier.forClass(PokerHand.class).usingGetClass().verify();
+        EqualsVerifier.forClass(PokerHand.class).usingGetClass().suppress(Warning.NONFINAL_FIELDS).verify();
     }
 }

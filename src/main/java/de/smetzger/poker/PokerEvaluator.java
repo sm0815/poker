@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import de.smetzger.poker.hand.PokerHand;
+import de.smetzger.poker.hand.types.PokerHandType;
 
-public class PokerEvaluator
-{
+public class PokerEvaluator {
     public static void main(String[] args) throws IOException {
 
         String cardsPlayerOne = null;
@@ -15,7 +15,6 @@ public class PokerEvaluator
         PokerHand handPlayerOne = null;
         PokerHand handPlayerTwo = null;
         PokerHandEvaluator handEvaluator = new SimplePokerHandEvaluator();
-
 
         System.out
         .println("In the following, please enter the hands for both players each as a single line with cards separated by space.");
@@ -26,22 +25,22 @@ public class PokerEvaluator
             System.out.println("Please enter the hand of player one now:");
             cardsPlayerOne = br.readLine();
             handPlayerOne = PokerHand.fromStringRepresentation(cardsPlayerOne);
+            handPlayerOne.setPlayer("ONE");
 
             System.out.println("Please enter the hand of player two now:");
             cardsPlayerTwo = br.readLine();
             handPlayerTwo = PokerHand.fromStringRepresentation(cardsPlayerTwo);
+            handPlayerTwo.setPlayer("TWO");
         }
 
-        int result = handEvaluator.compareHands(handPlayerOne, handPlayerTwo);
-        if (result > 0) {
-            System.out.println("Player one wins this round");
-        }
-        if (result < 0) {
-            System.out.println("Player two wins this round");
-        }
-        if (result == 0) {
+        PokerHandType result = handEvaluator.compareHands(handPlayerOne, handPlayerTwo);
+        if (result == null) {
             System.out.println("This round is undecided");
+        } else {
+            System.out.println("Player " + result.getPokerHand().getPlayer() + " won ("
+                    + result.getPokerHandTypeIdentifier() + ")");
         }
+
     }
 
 }

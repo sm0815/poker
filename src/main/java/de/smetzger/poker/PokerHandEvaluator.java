@@ -1,9 +1,10 @@
 package de.smetzger.poker;
 
 import de.smetzger.poker.hand.PokerHand;
+import de.smetzger.poker.hand.types.PokerHandType;
 
 public interface PokerHandEvaluator {
 
-	/** returns 1 of the first hand is better, -1 if the second hand is better, 0 if none are better */
-	int compareHands (PokerHand oneHand, PokerHand anotherHand);
+    /** returns the the winning poker hand type (along with the poker hand) */
+    PokerHandType compareHands(PokerHand oneHand, PokerHand anotherHand);
 }

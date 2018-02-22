@@ -1,9 +1,13 @@
-package de.smetzger.poker;
+package de.smetzger.poker.hand;
 
 import junit.framework.Assert;
 import nl.jqno.equalsverifier.EqualsVerifier;
 
 import org.junit.Test;
+
+import de.smetzger.poker.hand.PokerCard;
+import de.smetzger.poker.hand.PokerCardSuit;
+import de.smetzger.poker.hand.PokerCardValue;
 
 public class PokerCardTest {
 

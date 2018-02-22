@@ -1,8 +1,10 @@
-package de.smetzger.poker;
+package de.smetzger.poker.hand;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
+
+import de.smetzger.poker.hand.PokerCardValue;
 
 public class PokerCardValueTest {
 

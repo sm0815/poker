@@ -1,6 +1,6 @@
-package de.smetzger.poker;
+package de.smetzger.poker.hand;
 
-public class PokerCard {
+public class PokerCard implements Comparable<PokerCard> {
     private final PokerCardSuit suit;
     private final PokerCardValue value;
 
@@ -34,6 +34,7 @@ public class PokerCard {
         return new PokerCard(suit, value);
     }
 
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -54,14 +55,17 @@ public class PokerCard {
         PokerCard other = (PokerCard) obj;
         if (suit != other.suit)
             return false;
-        if (value != other.value)
-            return false;
-        return true;
+        return value == other.value;
     }
 
     @Override
     public String toString() {
-        return "PokerCard [suit=" + suit + ", value=" + value + "]";
+        return suit.toString() + value.toString();
+    }
+
+    @Override
+    public int compareTo(PokerCard o) {
+        return value.compareTo(o.value);
     }
 
 }

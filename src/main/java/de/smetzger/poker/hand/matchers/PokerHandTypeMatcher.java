@@ -1,6 +1,7 @@
-package de.smetzger.poker.handtypes;
+package de.smetzger.poker.hand.matchers;
 
-import de.smetzger.poker.PokerHand;
+import de.smetzger.poker.hand.PokerHand;
+import de.smetzger.poker.hand.types.PokerHandType;
 
 public interface PokerHandTypeMatcher {
 

@@ -4,9 +4,11 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import de.smetzger.poker.hand.PokerHand;
+
+
 public class PokerHandEvaluatorTest {
 
-    // TODO: inject
     PokerHandEvaluator evaluator = new SimplePokerHandEvaluator();
 
 

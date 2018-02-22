@@ -1,14 +1,14 @@
-package de.smetzger.poker.handtypes;
+package de.smetzger.poker.hand.types;
 
 import java.util.stream.Collectors;
 
-import de.smetzger.poker.PokerCard;
-import de.smetzger.poker.PokerHand;
+import de.smetzger.poker.hand.PokerCard;
+import de.smetzger.poker.hand.PokerHand;
 
-public class HighCardHandType extends BaseHandType {
+public class StraightHandType extends BaseHandType {
 
-    HighCardHandType(PokerHand hand) {
-        super(hand, PokerHandTypeIdentifier.HIGH_CARD);
+    public StraightHandType(PokerHand hand) {
+        super(hand, PokerHandTypeIdentifier.STRAIGHT);
     }
 
     @Override
@@ -16,7 +16,7 @@ public class HighCardHandType extends BaseHandType {
         if (getPokerHandTypeIdentifier() != o.getPokerHandTypeIdentifier()) {
             return super.compareTo(o);
         }
-        if (!(o instanceof HighCardHandType)) {
+        if (!(o instanceof StraightHandType)) {
             throw new RuntimeException("Poker hand types " + this + " and " + o
                     + " break the assumption that same PokerHandTypeIdentifier means same class");
         }

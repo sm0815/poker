@@ -1,4 +1,4 @@
-package de.smetzger.poker;
+package de.smetzger.poker.hand;
 
 public enum PokerCardValue implements Comparable<PokerCardValue> {
     TWO("2"),
@@ -21,6 +21,10 @@ public enum PokerCardValue implements Comparable<PokerCardValue> {
         this.stringRepresentation = stringRepresentation;
     }
 
+    public PokerCardValue next() {
+        return values()[(this.ordinal() + 1) % values().length];
+    }
+
     /**
      * Converts a string representation of a suit into the representative PokerCardSuit enum.
      * Assumes the given string to match one associated with any PokerCardSuit enum.
@@ -29,7 +33,6 @@ public enum PokerCardValue implements Comparable<PokerCardValue> {
      *            the string representation, e.g. 'C'
      * @return the PokerCardSuit enum representing the same suit as the string representation
      */
-    // TODO: dedicated exception / validity handling?
     public static PokerCardValue fromStringRepresentation(String stringRepresentation) {
         for (PokerCardValue value : values()) {
             if (value.stringRepresentation.equals(stringRepresentation)) {
@@ -38,5 +41,10 @@ public enum PokerCardValue implements Comparable<PokerCardValue> {
         }
         throw new IllegalArgumentException("String Representation '" + stringRepresentation
                 + "' does not match a valid PokerCardValue");
+    }
+
+    @Override
+    public String toString() {
+        return stringRepresentation;
     }
 }

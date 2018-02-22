@@ -1,4 +1,4 @@
-package de.smetzger.poker;
+package de.smetzger.poker.hand;
 
 import java.util.Set;
 
@@ -8,6 +8,11 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.Test;
 
 import com.google.common.collect.Sets;
+
+import de.smetzger.poker.hand.PokerCard;
+import de.smetzger.poker.hand.PokerCardSuit;
+import de.smetzger.poker.hand.PokerCardValue;
+import de.smetzger.poker.hand.PokerHand;
 
 public class PokerHandTest {
 

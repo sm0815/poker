@@ -1,4 +1,4 @@
-package de.smetzger.poker;
+package de.smetzger.poker.hand;
 
 
 public enum PokerCardSuit {
@@ -27,5 +27,10 @@ public enum PokerCardSuit {
         }
         throw new IllegalArgumentException("String Representation '"+stringRepresentation+
                 "' does not match a valid PokerCardSuit");
+    }
+
+    @Override
+    public String toString() {
+        return stringRepresentation;
     }
 }

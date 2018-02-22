@@ -1,12 +1,12 @@
-package de.smetzger.poker.handtypes;
+package de.smetzger.poker.hand.types;
 
 import java.util.Collection;
 import java.util.List;
 
 import com.google.common.collect.Lists;
 
-import de.smetzger.poker.PokerCardValue;
-import de.smetzger.poker.PokerHand;
+import de.smetzger.poker.hand.PokerCardValue;
+import de.smetzger.poker.hand.PokerHand;
 
 public class BaseHandType implements PokerHandType {
 
@@ -46,10 +46,10 @@ public class BaseHandType implements PokerHandType {
     protected int compareCardValuesForHighestDifferingValue(Collection<PokerCardValue> handOneValues,
             Collection<PokerCardValue> handTwoValues) {
         List<PokerCardValue> sortedListOne = Lists.newArrayList(handOneValues);
-        sortedListOne.sort((a, b) -> a.compareTo(b));
+        sortedListOne.sort((a, b) -> b.compareTo(a));
 
         List<PokerCardValue> sortedListTwo = Lists.newArrayList(handTwoValues);
-        sortedListTwo.sort((a, b) -> a.compareTo(b));
+        sortedListTwo.sort((a, b) -> b.compareTo(a));
 
         for (int i = 0; i < sortedListOne.size(); i++) {
             int valueComparison = sortedListOne.get(i).compareTo(sortedListTwo.get(i));

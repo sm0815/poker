@@ -1,4 +1,4 @@
-package de.smetzger.poker;
+package de.smetzger.poker.hand;
 
 import java.util.Arrays;
 import java.util.Collections;

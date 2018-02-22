@@ -1,6 +1,6 @@
-package de.smetzger.poker.handtypes;
+package de.smetzger.poker.hand.types;
 
-import de.smetzger.poker.PokerHand;
+import de.smetzger.poker.hand.PokerHand;
 
 public interface PokerHandType extends Comparable<PokerHandType> {
 

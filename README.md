@@ -44,14 +44,19 @@ A poker hand consists of 5 cards dealt from the deck. Poker hands are ranked by 
 
 ## Implementation
 
-## Assumptions
+### Assumptions
 * With regard to determining whether a hand consists of consecutive values the values are considered to not be iterated in a round-robin fashion. E.g. King, Ace, 2, 3, 4 would not be considered a straight.
     * If this would supposed to be handled differently, the ValuesInARowHandMatcher would need to be adapted to consider Straight hands not starting at the lowest value in the hand.
 
+### Decisions
+* No dependency injection framework
+    * Seems overkill for this small setup
+* No dedicated Error handling at the UI layer
+    * While the core classes do some input validation, there is no error handling layer at the UI level as the UI is minimal anyway; thus, invalid input leads to IllegalArgumentExceptions instead of a graceful user warning
 
 ### Thoughts on...
 #### Architecture
-* Option: Instead of amain interface just implement comparator on PokerHand
+* Option: Instead of a main interface we could just directly implement a comparator on PokerHand
     * Pro: 
         * directly use object comparison to identify the better hand, less code
     * Con: 
@@ -59,9 +64,9 @@ A poker hand consists of 5 cards dealt from the deck. Poker hands are ranked by 
         * no object return value, outside code needs to connect result with winning hand
         * possibly harder to test(?) 
 
+
 #### Parsing
-        
-* Option: Dedicated Parser instead of handling inside Representation classes
+* Option: Dedicated Parser instead of handling parsing inside the representation classes
     * Pro:
         - separate from internal representation
         - support for multiple representations
@@ -69,7 +74,6 @@ A poker hand consists of 5 cards dealt from the deck. Poker hands are ranked by 
         * Within this project no need for multiple representation support (and unlikely in this scenario in general)
         * Complicates the code
         * Premature (architecture) optimisation, don't implement what you don't need
-
 
 ## Running it
 

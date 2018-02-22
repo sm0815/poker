@@ -28,17 +28,18 @@ public class SameValueHandTypeMatcher implements PokerHandTypeMatcher {
         Map<PokerCardValue, Set<PokerCard>> cardsByValue = pokerHand.getHand().stream()
                 .collect(Collectors.groupingBy(PokerCard::getValue, Collectors.toSet()));
 
+        // no duplicate values, this matcher has nothing to find
         if(cardsByValue.size()==5){
             return null;
         }
 
-        //TODO: move generations into HandType classes
-
+        // if there are four groups of values, one value has to be duplicated
         if(cardsByValue.size()==4){
             PokerCardValue pairvalue=findXOfAKindValue(cardsByValue,2);
             return new PairHandType(pokerHand, pairvalue);
         }
 
+        // if we have only two groups it could be a full house or four and a single value
         if(cardsByValue.size()==2){
             Set<PokerCard> cardSetWithMaxSize = cardsByValue.values().stream()
                     .max((cardsetA, cardsetB) -> Integer.compare(cardsetA.size(), cardsetB.size())).get();
@@ -52,8 +53,7 @@ public class SameValueHandTypeMatcher implements PokerHandTypeMatcher {
             return new FullHouseHandType(pokerHand, tripletValue, pairValue);
         }
 
-
-
+        // three groups is either a double pair and a single value or a triplet and two single values
         if(cardsByValue.size()==3){
             Set<PokerCard> cardSetWithMaxSize = cardsByValue.values().stream()
                     .max((cardsetA, cardsetB) -> Integer.compare(cardsetA.size(), cardsetB.size())).get();

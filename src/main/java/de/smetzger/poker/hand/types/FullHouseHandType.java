@@ -5,12 +5,11 @@ import de.smetzger.poker.hand.PokerHand;
 
 public class FullHouseHandType extends BaseHandType {
     private final PokerCardValue tripletValue;
-    private final PokerCardValue pairValue;
 
-    public FullHouseHandType(PokerHand pokerHand, PokerCardValue tripletValue, PokerCardValue pairValue) {
+
+    public FullHouseHandType(PokerHand pokerHand, PokerCardValue tripletValue) {
         super(pokerHand, PokerHandTypeIdentifier.FULL_HOUSE);
         this.tripletValue = tripletValue;
-        this.pairValue = pairValue;
     }
 
     @Override
@@ -29,13 +28,6 @@ public class FullHouseHandType extends BaseHandType {
         if (tripletValueComparison != 0) {
             return tripletValueComparison;
         }
-
-        // current specification indicates the triplet value is the only one of importance,
-        // if on equal triplet value the pair value should be compared, this would do it
-        // int pairValueComparison = pairValue.compareTo(otherType.pairValue);
-        // if (pairValueComparison != 0) {
-        // return pairValueComparison;
-        // }
 
         return 0;
     }

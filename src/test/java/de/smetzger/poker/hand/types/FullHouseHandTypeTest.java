@@ -13,8 +13,8 @@ public class FullHouseHandTypeTest {
     public void testRankByTripletValue() {
         PokerHand aHand = PokerHand.fromStringRepresentation("C5 D5 H5 S2 S2");
         PokerHand anotherHand = PokerHand.fromStringRepresentation("C4 S4 D4 HA SA");
-        PokerHandType aTypeMatch = new FullHouseHandType(aHand, PokerCardValue.FIVE, PokerCardValue.TWO);
-        PokerHandType anotherTypeMatch = new FullHouseHandType(anotherHand, PokerCardValue.FOUR, PokerCardValue.ACE);
+        PokerHandType aTypeMatch = new FullHouseHandType(aHand, PokerCardValue.FIVE);
+        PokerHandType anotherTypeMatch = new FullHouseHandType(anotherHand, PokerCardValue.FOUR);
         Assert.assertTrue(aTypeMatch.compareTo(anotherTypeMatch) > 0);
     }
 
@@ -22,8 +22,8 @@ public class FullHouseHandTypeTest {
     public void testRankEqualIfTripletValueIsEqual() {
         PokerHand aHand = PokerHand.fromStringRepresentation("C4 D4 H4 S2 S2");
         PokerHand anotherHand = PokerHand.fromStringRepresentation("C4 S4 D4 HA SA");
-        PokerHandType aTypeMatch = new FullHouseHandType(aHand, PokerCardValue.FOUR, PokerCardValue.TWO);
-        PokerHandType anotherTypeMatch = new FullHouseHandType(anotherHand, PokerCardValue.FOUR, PokerCardValue.ACE);
+        PokerHandType aTypeMatch = new FullHouseHandType(aHand, PokerCardValue.FOUR);
+        PokerHandType anotherTypeMatch = new FullHouseHandType(anotherHand, PokerCardValue.FOUR);
         Assert.assertTrue(aTypeMatch.compareTo(anotherTypeMatch) == 0);
     }
 }

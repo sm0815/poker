@@ -49,8 +49,7 @@ public class SameValueHandTypeMatcher implements PokerHandTypeMatcher {
             }
 
             PokerCardValue tripletValue=findXOfAKindValue(cardsByValue,3);
-            PokerCardValue pairValue=findXOfAKindValue(cardsByValue,2);
-            return new FullHouseHandType(pokerHand, tripletValue, pairValue);
+            return new FullHouseHandType(pokerHand, tripletValue);
         }
 
         // three groups is either a double pair and a single value or a triplet and two single values

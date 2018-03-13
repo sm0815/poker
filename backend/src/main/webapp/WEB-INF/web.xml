@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This web.xml file is not required when using Servlet 3.0 container, 
+	see implementation details http://jersey.java.net/nonav/documentation/latest/jax-rs.html -->
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gsp='http://groovy.codehaus.org/2005/gsp'
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+
+	<servlet>
+		<servlet-name>Poker</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>io.swagger.jaxrs.listing,de.smetzger.poker.backend</param-value>
+		</init-param>
+
+
+		<init-param>
+			<param-name>swagger.scanner.id</param-name>
+			<param-value>v1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>swagger.config.id</param-name>
+			<param-value>v1</param-value>
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Poker</servlet-name>
+		<url-pattern>/v1/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- swagger configuration, this will generate the swagger.json -->
+	<servlet>
+		<servlet-name>Jersey2Config-V1</servlet-name>
+		<servlet-class>io.swagger.jersey.config.JerseyJaxrsConfig</servlet-class>
+		<init-param>
+			<param-name>api.version</param-name>
+			<!-- this should reflect our API version -->
+			<param-value>1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>swagger.api.basepath</param-name>
+			<param-value>/poker/v1/</param-value>
+		</init-param>
+		<init-param>
+			<param-name>swagger.api.title</param-name>
+			<param-value>Poker API V1</param-value>
+		</init-param>
+
+
+		<init-param>
+			<param-name>swagger.scanner.id</param-name>
+			<param-value>v1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>swagger.config.id</param-name>
+			<param-value>v1</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<!-- // swagger configuration -->
+
+</web-app>
+
